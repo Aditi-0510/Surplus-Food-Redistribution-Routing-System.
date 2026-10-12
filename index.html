@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FoodBridge AI | CodeNova</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <h2>✳ FoodBridge <span>AI</span></h2>
+    <p class="tagline">BY CODENOVA</p>
+    <nav>
+      <button data-page="overview" class="nav active">⌂ Overview</button>
+      <button data-page="donations" class="nav">♧ Food Donations</button>
+      <button data-page="matching" class="nav">⌘ NGO Matching</button>
+      <button data-page="routes" class="nav">⌁ Route Planning</button>
+      <button data-page="impact" class="nav">↗ Impact Report</button>
+    </nav>
+    <div class="sidebar-bottom">● Demo system online</div>
+  </aside>
+
+  <main>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">SMART INDIA HACKATHON · CODENOVA</p>
+        <h1 id="pageTitle">Surplus food, <span>smarter routes.</span></h1>
+      </div>
+      <button class="btn primary" id="addBtn">+ Add Donation</button>
+    </header>
+
+    <section id="overview" class="page active">
+      <div class="hero">
+        <div>
+          <p class="eyebrow">SMART FOOD REDISTRIBUTION SYSTEM</p>
+          <h2>Good food deserves<br>a destination.</h2>
+          <p>Connect food donors with suitable NGOs, prioritize urgent donations, and plan practical deliveries.</p>
+          <button class="btn lime" id="heroAdd">Register a Donation ↗</button>
+          <button class="btn glass" id="heroMatch">Run Smart Matching</button>
+        </div>
+        <div class="hero-icon">🥗</div>
+      </div>
+
+      <div class="metrics">
+        <article class="metric"><p>Active Donations</p><strong id="activeCount">0</strong></article>
+        <article class="metric"><p>Available Portions</p><strong id="portionCount">0</strong></article>
+        <article class="metric"><p>Delivered Portions</p><strong id="deliveredCount">0</strong></article>
+        <article class="metric"><p>Partner NGOs</p><strong>4</strong></article>
+      </div>
+
+      <div class="grid two">
+        <article class="panel">
+          <div class="panel-head"><h3>Recent Donations</h3>
+            <button class="text-btn" data-page="donations">View all →</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>DONOR / FOOD</th><th>PORTIONS</th><th>DEADLINE</th><th>STATUS</th></tr></thead>
+              <tbody id="recentRows"></tbody>
+            </table>
+          </div>
+          <p id="emptyRecent" class="empty" hidden>No donations yet. Add your first donation!</p>
+        </article>
+        <article class="panel">
+          <div class="panel-head"><h3>Recommended NGOs</h3><span class="pill">SMART MATCH</span></div>
+          <p class="muted">Recommendations use food compatibility, capacity, urgency and estimated distance.</p>
+          <div id="overviewMatches"></div>
+          <button class="btn outline full" data-page="matching">Open Matching Centre →</button>
+        </article>
+      </div>
+    </section>
+
+    <section id="donations" class="page">
+      <div class="page-heading">
+        <p class="eyebrow">STEP 01 · DONOR REGISTRATION</p>
+        <h2>Food Donations</h2>
+        <p>Register surplus food with its quantity, location and safe-until deadline.</p>
+        <button class="btn primary" id="registerBtn">+ Register Donation</button>
+      </div>
+      <article class="panel">
+        <div class="panel-head"><h3>Donation Inventory</h3><span id="recordCount" class="muted"></span></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>DONOR / FOOD</th><th>PORTIONS</th><th>AREA</th><th>DEADLINE</th><th>PRIORITY</th><th>STATUS</th><th>ACTION</th></tr></thead>
+            <tbody id="donationRows"></tbody>
+          </table>
+        </div>
+        <p id="emptyAll" class="empty" hidden>No donation records available.</p>
+      </article>
+    </section>
+
+    <section id="matching" class="page">
+      <div class="page-heading">
+        <p class="eyebrow">STEP 02 · NGO ALLOCATION</p>
+        <h2>Smart Matching Centre</h2>
+        <p>Rank suitable NGOs based on food type, capacity, urgency and estimated area distance.</p>
+        <button class="btn primary" id="matchBtn">Calculate Best Matches ↗</button>
+      </div>
+      <div class="notice"><b>How it works</b><span>Transparent demo scoring combines food compatibility, capacity, deadline urgency and approximate distance. Scores are illustrative, not trained AI predictions.</span></div>
+      <div id="matchCards" class="grid two"></div>
+    </section>
+
+    <section id="routes" class="page">
+      <div class="page-heading">
+        <p class="eyebrow">STEP 03 · DELIVERY ROUTING</p>
+        <h2>Route Planner</h2>
+        <p>Create a suggested pickup and delivery sequence for matched donations.</p>
+        <button class="btn primary" id="routeBtn">Optimize Suggested Route ↗</button>
+      </div>
+      <div class="grid two">
+        <article class="panel map">
+          <div class="map-art">
+            <div class="map-node n1">P</div><div class="map-node n2">1</div>
+            <div class="map-node n3">2</div><div class="map-node n4">D</div>
+            <svg viewBox="0 0 400 240" preserveAspectRatio="none">
+              <path d="M35 185 L115 80 L220 145 L340 55" />
+            </svg>
+          </div>
+          <p class="muted">Illustrative route graphic, not live navigation.</p>
+        </article>
+        <article class="panel">
+          <h3 id="routeHeading">Your route will appear here</h3>
+          <div class="route-stats">
+            <div><small>Stops</small><strong id="stopCount">—</strong></div>
+            <div><small>Estimated distance</small><strong id="routeDistance">—</strong></div>
+          </div>
+          <ol id="routeStops"><li>Run smart matching, then optimize the route.</li></ol>
+          <p class="muted">Distance is a demo estimate. Confirm real routes before dispatch.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="impact" class="page">
+      <div class="page-heading">
+        <p class="eyebrow">STEP 04 · IMPACT TRACKING</p>
+        <h2>Impact Report</h2>
+        <p>Track portions listed, delivered and still awaiting delivery.</p>
+      </div>
+      <div class="metrics">
+        <article class="metric"><p>Total Listed Portions</p><strong id="listedTotal">0</strong></article>
+        <article class="metric"><p>Delivered Portions</p><strong id="deliveredTotal">0</strong></article>
+        <article class="metric"><p>Completion Rate</p><strong id="completionRate">0%</strong></article>
+        <article class="metric"><p>Active Donations</p><strong id="activeTotal">0</strong></article>
+      </div>
+      <article class="panel">
+        <div class="panel-head"><h3>Delivery Records</h3><button class="btn outline" id="exportBtn">Export CSV ↓</button></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>DONOR</th><th>FOOD</th><th>PORTIONS</th><th>AREA</th><th>STATUS</th><th>ACTION</th></tr></thead>
+            <tbody id="impactRows"></tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+
+    <footer>© 2026 CodeNova · FoodBridge AI · SIH Prototype</footer>
+  </main>
+
+  <dialog id="donationDialog">
+    <form id="donationForm">
+      <div class="panel-head">
+        <div><p class="eyebrow">NEW FOOD LISTING</p><h2>Register Donation</h2></div>
+        <button type="button" id="closeBtn" class="close-btn">×</button>
+      </div>
+      <div class="form-grid">
+        <label>Donor / Organization<input name="donor" required maxlength="70" placeholder="e.g. Green Leaf Café"></label>
+        <label>Food Type<select name="type"><option>Cooked meals</option><option>Bakery</option><option>Fruits & vegetables</option><option>Packaged food</option><option>Dairy</option></select></label>
+        <label>Quantity (portions)<input name="quantity" type="number" min="1" max="10000" required></label>
+        <label>Pickup Area<select name="area"><option>Rajarampuri</option><option>Shahupuri</option><option>Uchgaon Road</option><option>Tarabai Park</option><option>Kolhapur</option></select></label>
+        <label>Safe Until<input name="deadline" type="datetime-local" required></label>
+        <label>Contact Details<input name="contact" required maxlength="60" placeholder="Contact name or phone"></label>
+      </div>
+      <label class="safety"><input name="safety" type="checkbox" required> I confirm these details are accurate and food safety will be checked before handover.</label>
+      <div class="form-actions"><button type="button" class="btn outline" id="cancelBtn">Cancel</button><button type="submit" class="btn primary">Save Donation →</button></div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
